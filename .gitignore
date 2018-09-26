@@ -10,7 +10,7 @@
 /build
 
 # config files with the secrets
-/config
+config.js
 
 # misc
 .DS_Store
