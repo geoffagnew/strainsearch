@@ -1,10 +1,10 @@
 import React, { Component } from 'react';
-import styles from './Navigation.module.css';
+import './Navigation.scss';
 
 class Navigation extends Component {
   render() {
     return (
-      <div id={styles.mainnav} className="py-4 px-5">
+      <div id="mainnav" className="py-4 px-5">
         <span>Weed Wizard</span>
         <nav>
           <ul>

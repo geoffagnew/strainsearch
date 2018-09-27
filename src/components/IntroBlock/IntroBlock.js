@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import styles from './IntroBlock.module.css';
+import './IntroBlock.scss';
 
 class IntroBlock extends Component {
   render() {

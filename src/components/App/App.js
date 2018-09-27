@@ -5,7 +5,7 @@ import IntroBlock from './../IntroBlock/IntroBlock';
 import FilterBlock from './../FilterBlock/FilterBlock';
 import FormCheckInline from './../FormCheckInline/FormCheckInline';
 import './../../styles/global/bootstrap.min.css';
-import './../../styles/global/App.css';
+import './../../styles/global/App.scss';
 
 class App extends Component {
   render() {
