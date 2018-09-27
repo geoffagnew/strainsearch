@@ -8,8 +8,8 @@ class Navigation extends Component {
       <div id="mainnav" className="py-4 px-5">
         <span><Link to='/'>Weed Wizard</Link></span>
         <nav>
-          <ul>
-            <li><Link to="/all-strains">All strains</Link></li>
+          <ul className="mb-0">
+            <li><Link to="/effects/creative">Creative</Link></li>
             <li><Link to="/about-weed-wizard">About WW</Link></li>
           </ul>
         </nav>

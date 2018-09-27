@@ -4,7 +4,7 @@ import './ContentBlock.scss';
 class ContentBlock extends Component {
   render() {
     return (
-      <div id="contentblock" className="container py-5 px-5">
+      <div id="contentblock">
         {this.props.children}
       </div>
     );

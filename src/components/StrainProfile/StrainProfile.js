@@ -1,40 +1,32 @@
 import React, { Component } from 'react';
 import ContentBlock from '../ContentBlock/ContentBlock';
-import StrainListItem from '../StrainListItem/StrainListItem';
-import './AllStrains.scss';
 import ApiKey from '../../config';
 
-class AllStrains extends Component {
+class StrainProfile extends Component {
   constructor(props) {
     super(props)
     this.state = {
-      strains: [],
+      strain: null,
       urlParam: this.props.match.params.id
     };
   }
 
   componentDidMount() {
-    fetch(`http://strainapi.evanbusse.com/${ApiKey}/strains/search/effect/${this.state.urlParam}`)
+    fetch(`http://strainapi.evanbusse.com/${ApiKey}/strains/search/name/${this.state.urlParam}`)
       .then((response) => response.json())
-      .then((data) => this.setState({ strains: data }))
+      // .then((data) => console.log(data))
+      .then((data) => this.setState({ strain: data }))
       .catch((err) => console.log(`Something went wrong ${err}`));
   }
 
   render() {
 
-    let strainsList;
+    let strainProfile;
 
-    if(this.state.strains.length > 0) {
-      strainsList = this.state.strains.map((strain) =>
-        <StrainListItem 
-          key={strain.id}
-          strainName={strain.name}
-          strainRace={strain.race}
-          strainEffect={strain.effect}
-        />
-      );
+    if(this.state.strain !== null) {
+      strainProfile = this.state.strain[0].name;
     } else {
-      strainsList = <p>Data is loading.</p>;
+      strainProfile = 'Data is loading';
     }
 
     return (
@@ -48,7 +40,7 @@ class AllStrains extends Component {
           <div className="row">
             <div className="col-md-8 strain-list-wrapper p-4">
               <ul className="strain-list pl-0">
-                {strainsList}
+                {strainProfile}
               </ul>
             </div>
             <div className="col-md-3 offset-md-1 strain-list-wrapper p-4">
@@ -61,4 +53,4 @@ class AllStrains extends Component {
   }
 }
 
-export default AllStrains;
+export default StrainProfile;
