@@ -1,4 +1,28 @@
 #mainnav {
   /* border-bottom: 1px solid #f3fce9; */
-  background: #73bd65;
+  /* background: #73bd65; */
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+}
+
+span {
+  font-weight: bold;
+  display: inline-block;
+}
+
+nav ul {
+  list-style: none;
+  padding-left: 0;
+  display: inline-block;
+}
+
+nav ul li {
+  display: inline-block;
+  margin-left: 15px;
+}
+
+nav a {
+  color: #192c14;
+  font-weight: bold;
 }

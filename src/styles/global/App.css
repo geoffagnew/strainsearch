@@ -3,8 +3,55 @@ body {
   -moz-osx-font-smoothing: grayscale;
   -webkit-font-smoothing: antialiased;
   background: #82d173;
+  color: #192c14;
 }
 
-.filterblock {
-  background: red;
+a {
+  color: #82d173;
+}
+
+.btn-primary {
+  background: #82d173;
+  border-color: #82d173;
+}
+
+.home-wrap {
+  display: flex;
+  min-height: 80vh;
+  align-items: center;
+}
+
+.panel-home {
+  background: #ffffff;
+  border-radius: 2px;
+  display: flex;
+  min-height: 400px;
+}
+
+.panel-col-1 {
+  position: relative;
+  width: 35%;
+  border-radius: 2px 0 0 2px;
+}
+
+.panel-col-1 span {
+  position: absolute;
+  bottom: 5%;
+  left: 5%;
+  color: white;
+  font-size: 11px;
+}
+
+.panel-col-2 {
+  width: 65%;
+  display: flex;
+  flex-direction: column;
+  flex-wrap: wrap;
+  justify-content: center;
+}
+
+.panel-flash {
+  /* background: #2d4c09; */
+  background: url(https://media.giphy.com/media/3ov9jEp7AkzKJf462Y/giphy.gif) no-repeat #2d4c09;
+  background-size: cover;
 }
