@@ -5,7 +5,7 @@ class FormCheckInline extends Component {
     return (
       <div className="form-check form-check-inline">
         <input className="form-check-input" type="checkbox" id={this.props.id} value={this.props.label} />
-        <label className="form-check-label" for="inlineCheckbox2">{this.props.label}</label>
+        <label className="form-check-label">{this.props.label}</label>
       </div>
     );
   }

@@ -1,0 +1,12 @@
+@import '../../styles/global/variables.scss';
+
+.strain-list-item {
+  border-bottom: 1px solid $gray-300;
+  span {
+    font-weight: $font-weight-normal;
+    font-size: $font-size-base * 0.9;
+  }
+  .strain-race {
+    text-transform: capitalize;
+  }
+}

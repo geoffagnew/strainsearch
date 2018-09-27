@@ -1,4 +1,10 @@
+@import '../../styles/global/variables.scss';
+
 #contentblock {
-  background: white;
+  background: $white;
   border-radius: 2px;
+  margin-top: 10%;
+  -webkit-box-shadow: 0px 60px 96px -20px rgba(0,0,0,0.40);
+  -moz-box-shadow: 0px 60px 96px -20px rgba(0,0,0,0.40);
+  box-shadow: 0px 60px 96px -20px rgba(0,0,0,0.40);
 }
