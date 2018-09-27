@@ -6,7 +6,7 @@ class FilterBlock extends Component {
     return (
       <div id="filterblock">
         <h2 className="h5 font-weight-bold">{this.props.filterTitle}</h2>
-        <form onSubmit={this.handleSubmit}>
+        <form onSubmit={this.handleSubmit} className="mb-4">
           {this.props.children}
         </form>
         <button type="button" className="btn btn-primary" disabled aria-disabled="true">Search strains</button>

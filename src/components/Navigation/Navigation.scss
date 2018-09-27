@@ -1,9 +1,12 @@
+@import '../../styles/global/variables.scss';
+
 #mainnav {
-  /* border-bottom: 1px solid #f3fce9; */
-  /* background: #73bd65; */
+  position: fixed;
+  width: 100%;
   display: flex;
   flex-direction: row;
   justify-content: space-between;
+  background: $light-green;
 }
 
 span {
