@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import ContentBlock from '../ContentBlock/ContentBlock';
 import StrainListItem from '../StrainListItem/StrainListItem';
+import StrainProfileTest from '../StrainProfileTest/StrainProfileTest';
 import './AllStrains.scss';
 import ApiKey from '../../config';
 
@@ -51,9 +52,7 @@ class AllStrains extends Component {
                 {strainsList}
               </ul>
             </div>
-            <div className="col-md-8 strain-list-wrapper p-4">
-              <p>Some cool as stuff goes here.</p>
-            </div>
+            <StrainProfileTest />
           </div>
         </div>
       </ContentBlock>
