@@ -46,12 +46,12 @@ class AllStrains extends Component {
             </div>
           </div>
           <div className="row">
-            <div className="col-md-8 strain-list-wrapper p-4">
+            <div className="col-md-4 strain-list-wrapper p-4">
               <ul className="strain-list pl-0">
                 {strainsList}
               </ul>
             </div>
-            <div className="col-md-3 offset-md-1 strain-list-wrapper p-4">
+            <div className="col-md-8 strain-list-wrapper p-4">
               <p>Some cool as stuff goes here.</p>
             </div>
           </div>
