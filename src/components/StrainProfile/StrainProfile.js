@@ -15,28 +15,64 @@ class StrainProfile extends Component {
   }
 
   componentDidMount() {
+    let strainId;
 
-    fetch(`http://strainapi.evanbusse.com/${ApiKey}/strains/search/name/${this.state.urlParam}`)
-      .then((response) => response.json())
-      // .then((data) => console.log(data))
-      .then(data => this.setState({ strainDetails: data, isLoaded: true }))
-      .catch(err => console.log(`Something went wrong ${err}`));
+    let fetchResult = fetch(`http://strainapi.evanbusse.com/${ApiKey}/strains/search/name/${this.state.urlParam}`)
+    .then(response => response.json())
+    .then(data => {
+      this.setState({ 
+        strainDetails: data
+      })
+      // get the id for this strain
+      strainId = data[0].id;
+      // make a 2nd request and return a promise
+      return fetch(`http://strainapi.evanbusse.com/${ApiKey}/strains/data/effects/${strainId}`);
+    })
+    .then(response => response.json())
+    .then(data => {
+      this.setState({ 
+        strainEffects: data
+      })
+      // make a 3rd request and return a promise
+      return fetch(`http://strainapi.evanbusse.com/${ApiKey}/strains/data/flavors/${strainId}`);
+    })
+    .then(response => response.json())
+    .then(data => {
+      this.setState({ 
+        strainFlavors: data,
+        isLoaded: true
+      })
+    })
+    .catch(error => console.log('Request failed', error));
   }
 
   render() {
 
-    const { isLoaded, strainDetails } = this.state;
+    const { isLoaded, strainDetails, strainEffects, strainFlavors } = this.state;
 
-    let strainProfile;
+    let strainProfile,
+        positiveEffects,
+        negativeEffects,
+        flavors;
 
     if(!isLoaded) {
-      strainProfile = 'Data is loading';
+      strainProfile = <p>Data is loading</p>;
     } else {
       strainProfile = 
         <div>
           <p>{strainDetails[0].race}</p>
           <p>{strainDetails[0].desc}</p>
         </div>;
+        
+        if(strainFlavors.length > 0) {
+          flavors = <p>Flavors: {strainFlavors}</p>;
+        }
+        if(strainEffects.positive.length > 0) {
+          positiveEffects = <p>Positive: {strainEffects.positive}</p>;
+        } 
+        if(strainEffects.negative.length > 0) {
+          negativeEffects = <p>Negative: {strainEffects.negative}</p>;
+        } 
     }
 
     return (
@@ -49,7 +85,10 @@ class StrainProfile extends Component {
           </div>
           <div className="row">
             <div className="col-md-8 strain-list-wrapper py-5 px-4">
-                {strainProfile}
+              {strainProfile}
+              {flavors}
+              {positiveEffects}
+              {negativeEffects}
             </div>
             <div className="col-md-3 offset-md-1 strain-list-wrapper p-4">
               <p>Some cool as stuff goes here.</p>
