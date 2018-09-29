@@ -11,7 +11,6 @@ const AppRouter = () => (
   <Switch>
     <Route path='/' component={HomePanel} exact={true} />
     <Route path='/effects/:id' component={StrainsView}/>
-    <Route path='/effects/strains/:id' render={StrainProfileTest}/>
     {/*<Route component={NotFoundPage} />*/}
   </Switch>
 );
