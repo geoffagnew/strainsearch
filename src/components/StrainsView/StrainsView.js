@@ -11,7 +11,7 @@ class StrainsView extends Component {
     super(props)
     this.state = {
       strains: [],
-      urlParam: null
+      effectId: null
     };
   }
 
@@ -19,18 +19,25 @@ class StrainsView extends Component {
     const { id } = this.props.match.params;
     fetch(`http://strainapi.evanbusse.com/${ApiKey}/strains/search/effect/${id}`)
       .then((response) => response.json())
-      .then((data) => this.setState({ strains: data, urlParam: id }))
+      .then((data) => this.setState({ strains: data, effectId: id }))
       .catch((err) => console.log(`Something went wrong ${err}`));
   }
 
   render() {
-
+    // define strainsList variable to hold all strains from the array.map function below, and then displayed on the page
     let strainsList;
+
+    // if effect value is available in state, load it into the strainEffectPath variable for use in Route below
+    let strainEffectPath;
+    if(this.state.effectId) {
+      strainEffectPath = `/effects/${this.state.effectId}/strain/:id`;
+    }
 
     if(this.state.strains.length > 0) {
       strainsList = this.state.strains.map((strain) =>
         <StrainListItem 
           key={strain.id}
+          effectId={this.state.effectId}
           strainName={strain.name}
           strainRace={strain.race}
           strainEffect={strain.effect}
@@ -55,7 +62,7 @@ class StrainsView extends Component {
                 </ul>
               </div>
               <Route 
-                path="/effects/creative/strain/:id" 
+                path={strainEffectPath} 
                 component={StrainProfile}
               />
           </div>

@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import { Link } from 'react-router-dom';
 import FilterBlock from './../FilterBlock/FilterBlock';
 import FormCheckInline from './../FormCheckInline/FormCheckInline';
 
@@ -12,12 +13,15 @@ class HomePanel extends Component {
               <span>Image Laurie Rowan</span>
             </div>
             <div className="panel-col-2 px-5">
+              <ul className="tabs">
+                <li className="tabs__tab tabs__tab--active"><a href="#">Recreational effects</a></li>
+                <li className="tabs__tab"><a href="#">Medicinal effects</a></li>
+              </ul>
               <h1 className="font-weight-bold h2 mb-3">Find the right marijuana for your mood</h1>
               <FilterBlock filterTitle="I want to feel:">
-                <FormCheckInline label="Happy" id="check1"/>
-                <FormCheckInline label="Relaxed" id="check2"/>
-                <FormCheckInline label="Euphoric" id="check3"/>
-                <FormCheckInline label="Uplifted" id="check4"/>
+                <Link to="/effects/relaxed" className="btn btn-outline-primary btn-sm mr-2">Relaxed</Link>
+                <Link to="/effects/creative" className="btn btn-outline-primary btn-sm mr-2">Creative</Link>
+                <Link to="/effects/focused" className="btn btn-outline-primary btn-sm mr-2">Focused</Link>
               </FilterBlock>
             </div>
           </div>

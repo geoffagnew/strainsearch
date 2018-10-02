@@ -9,7 +9,6 @@ class Navigation extends Component {
         <span><Link to='/'>Weed Wizard</Link></span>
         <nav>
           <ul className="mb-0">
-            <li><Link to="/effects/creative">Creative</Link></li>
             <li><Link to="/about-weed-wizard">About WW</Link></li>
           </ul>
         </nav>

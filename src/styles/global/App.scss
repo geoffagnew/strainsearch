@@ -21,6 +21,7 @@ h1, h2, h3, h4, h5, h6 {
   font-weight: $font-weight-bold;
 }
 
+//  ----------------------------- BUTTONS
 .btn-primary {
   background: $medium-purple;
   border-color: $medium-purple;
@@ -38,6 +39,40 @@ h1, h2, h3, h4, h5, h6 {
   }
 }
 
+.btn-outline-primary, a.btn-outline-primary {
+  border-color: $medium-purple;
+  color: $medium-purple;
+  &:hover {
+    background: $medium-purple;
+    color: $white;
+    border-color: $medium-purple;
+  }
+}
+
+//  ----------------------------- TABS
+.tabs {
+  list-style: none;
+  padding: ($spacer * 0.5) 0 0;
+  border-bottom: 1px solid $gray-500;
+}
+
+.tabs__tab {
+  display: inline-block;
+  margin-right: $spacer * 1.5;
+  a {
+    color: $gray-700;
+  }
+}
+
+.tabs__tab--active {
+  padding-bottom: $spacer * 0.5;
+  border-bottom: 3px solid $dark-purple;
+  a {
+    color: $dark-purple;
+  }
+}
+
+//  ----------------------------- HELPER CLASSES
 // helper class to capitalize elements that come in lower case from this janky API
 .capitalize {
   text-transform: capitalize;
@@ -72,7 +107,7 @@ h1, h2, h3, h4, h5, h6 {
   bottom: 5%;
   left: 5%;
   color: $white;
-  font-size: 11px;
+  font-size: $font-size-base * 0.75;
 }
 
 .panel-col-2 {
@@ -81,6 +116,7 @@ h1, h2, h3, h4, h5, h6 {
   flex-direction: column;
   flex-wrap: wrap;
   justify-content: center;
+  position: relative;
 }
 
 .panel-flash {
