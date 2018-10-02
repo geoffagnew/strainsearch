@@ -30,7 +30,7 @@ class StrainsView extends Component {
     // if effect value is available in state, load it into the strainEffectPath variable for use in Route below
     let strainEffectPath;
     if(this.state.effectId) {
-      strainEffectPath = `/effects/${this.state.effectId}/strain/:id`;
+      strainEffectPath = this.state.effectId;
     }
 
     if(this.state.strains.length > 0) {
@@ -62,7 +62,7 @@ class StrainsView extends Component {
                 </ul>
               </div>
               <Route 
-                path={strainEffectPath} 
+                path={`/effects/${strainEffectPath}/strain/:id`} 
                 component={StrainProfile}
               />
           </div>
