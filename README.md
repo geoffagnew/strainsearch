@@ -1,11 +1,16 @@
 # weedwizard
-Woah, man.
+React app that provides a vast collection of marijuana strains sortable by desired effects (medicinal or otherwise) 🌱. Data is pulled from [The Strain API](http://strains.evanbusse.com/index.html).
 
 ## Requirements
 * Node
 * Yarn
 
 Built with create-react-app.
+
+### Installation
+```
+yarn install
+```
 
 ### Running the app in development mode
 ```
