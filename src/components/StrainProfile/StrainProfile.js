@@ -14,15 +14,15 @@ class StrainProfile extends Component {
     };
   }
 
-  componentDidMount() {
+  // method to handle all API requests for building the strain profile
+  buildStrainProfile = (urlParams) => {
     let strainId;
-    const { id } = this.props.match.params;
-
-    let fetchResult = fetch(`http://strainapi.evanbusse.com/${ApiKey}/strains/search/name/${id}`)
+    // fetch the 1st request (strain race, description and Id)
+    let fetchResult = fetch(`http://strainapi.evanbusse.com/${ApiKey}/strains/search/name/${urlParams}`)
     .then(response => response.json())
     .then(data => {
       this.setState({
-        strainName: id,
+        strainName: urlParams,
         strainDetails: data
       })
       // get the id for this strain
@@ -48,12 +48,17 @@ class StrainProfile extends Component {
     .catch(error => console.log('Request failed', error));
   }
 
-  // componentDidUpdate(prevProps, prevState) {
-  //   const { id } = this.props.match.params;
-  //   if (prevState.strainName !== id) {
-  //     this.setState(() => ({ strainName: id}));
-  //   }
-  // }
+  componentDidMount() {
+    const { id } = this.props.match.params;
+    this.buildStrainProfile(id);
+  }
+
+  componentDidUpdate(prevProps, prevState) {
+    const { id } = this.props.match.params;
+    if (prevState.strainName !== id) {
+      this.buildStrainProfile(id);
+    }
+  }
 
   render() {
 
@@ -61,8 +66,7 @@ class StrainProfile extends Component {
 
     let strainProfile,
         positiveEffects,
-        negativeEffects,
-        flavors;
+        negativeEffects;
 
     if(!isLoaded) {
       strainProfile = <p>Data is loading</p>;
@@ -72,23 +76,15 @@ class StrainProfile extends Component {
           <h1>{strainName}</h1>
           <p>{strainDetails[0].race}</p>
           <p>{strainDetails[0].desc}</p>
+          {strainFlavors.length > 0 ? <p>Flavors: {strainFlavors}</p> : ''}
+          {strainEffects.positive.length > 0 ? <p>Positive: {strainEffects.positive}</p> : ''}
+          {strainEffects.negative.length > 0 ? <p>Negative: {strainEffects.negative}</p> : ''}
         </div>;
-        
-        if(strainFlavors.length > 0) {
-          flavors = <p>Flavors: {strainFlavors}</p>;
-        }
-        if(strainEffects.positive.length > 0) {
-          positiveEffects = <p>Positive: {strainEffects.positive}</p>;
-        } 
-        if(strainEffects.negative.length > 0) {
-          negativeEffects = <p>Negative: {strainEffects.negative}</p>;
-        } 
     }
 
     return (
       <div className="col-md-8 py-5 px-4">
         {strainProfile}
-        {flavors}
         {positiveEffects}
         {negativeEffects}
       </div>
