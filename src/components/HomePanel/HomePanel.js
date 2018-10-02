@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import FilterBlock from './../FilterBlock/FilterBlock';
 import Tab from './../Tab/Tab';
+import './HomePanel.scss';
 
 const recOptions = {
   id: 'recreactional',
@@ -51,9 +52,9 @@ class HomePanel extends Component {
               <span>Image Laurie Rowan</span>
             </div>
             <div className="panel-col-2 px-5">
-              <ul className="tabs">
-                <Tab tabText="Recreational effects" handleTabClick={this.handleTabClick} id="recreational" />
-                <Tab tabText="Medicinal effects" handleTabClick={this.handleTabClick} id="medicinal" />
+              <ul className="tabs mb-0">
+                <Tab tabText="Recreational effects" currentView={this.state.selectedView} handleTabClick={this.handleTabClick} id="recreational" />
+                <Tab tabText="Medicinal effects" currentView={this.state.selectedView} handleTabClick={this.handleTabClick} id="medicinal" />
               </ul>
               <FilterBlock 
                 filterHead={this.state.selectedViewDetails.head} 

@@ -49,77 +49,8 @@ h1, h2, h3, h4, h5, h6 {
   }
 }
 
-//  ----------------------------- TABS
-.tabs {
-  list-style: none;
-  padding: ($spacer * 0.5) 0 0;
-  border-bottom: 1px solid $gray-500;
-}
-
-.tabs__tab {
-  display: inline-block;
-  margin-right: $spacer * 1.5;
-  a {
-    color: $gray-700;
-  }
-}
-
-.tabs__tab--active {
-  padding-bottom: $spacer * 0.5;
-  border-bottom: 3px solid $dark-purple;
-  a {
-    color: $dark-purple;
-  }
-}
-
 //  ----------------------------- HELPER CLASSES
 // helper class to capitalize elements that come in lower case from this janky API
 .capitalize {
   text-transform: capitalize;
-}
-
-// Homepage specific scss -- move this to component level scss file at some point
-
-.home-wrap {
-  display: flex;
-  min-height: 100vh;
-  align-items: center;
-}
-
-.panel-home {
-  background: $white;
-  border-radius: 2px;
-  display: flex;
-  min-height: 400px;
-  -webkit-box-shadow: 0px 60px 96px -20px rgba(0,0,0,0.30);
-  -moz-box-shadow: 0px 60px 96px -20px rgba(0,0,0,0.30);
-  box-shadow: 0px 60px 96px -20px rgba(0,0,0,0.30);
-}
-
-.panel-col-1 {
-  position: relative;
-  width: 35%;
-  border-radius: 2px 0 0 2px;
-}
-
-.panel-col-1 span {
-  position: absolute;
-  bottom: 5%;
-  left: 5%;
-  color: $white;
-  font-size: $font-size-base * 0.75;
-}
-
-.panel-col-2 {
-  width: 65%;
-  display: flex;
-  flex-direction: column;
-  flex-wrap: wrap;
-  justify-content: center;
-  position: relative;
-}
-
-.panel-flash {
-  background: url(https://media.giphy.com/media/3ov9jEp7AkzKJf462Y/giphy.gif) no-repeat $dark-green;
-  background-size: cover;
 }

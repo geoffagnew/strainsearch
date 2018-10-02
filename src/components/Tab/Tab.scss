@@ -1,0 +1,27 @@
+@import '../../styles/global/variables.scss';
+
+//  ----------------------------- TABS
+.tabs {
+  list-style: none;
+  padding: $spacer 0 0;
+  border-bottom: 1px solid $gray-500;
+  align-self: flex-start;
+  width: 100%;
+}
+
+.tabs__tab {
+  display: inline-block;
+  margin-right: $spacer * 1.5;
+  padding-bottom: $spacer * 0.5;
+  a {
+    color: $gray-700;
+  }
+}
+
+.tabs__tab--active {
+  padding-bottom: $spacer * 0.5;
+  border-bottom: 3px solid $dark-purple;
+  a {
+    color: $dark-purple;
+  }
+}
