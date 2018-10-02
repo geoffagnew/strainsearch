@@ -1,0 +1,10 @@
+@import '../../styles/global/variables.scss';
+
+.strain-profile {
+  background: $white;
+}
+
+.strain-profile-body {
+  position: sticky;
+  top: 100px;
+}

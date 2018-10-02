@@ -2,22 +2,24 @@ import React, { Component } from 'react';
 import ContentBlock from '../ContentBlock/ContentBlock';
 import StrainListItem from '../StrainListItem/StrainListItem';
 import StrainProfile from '../StrainProfile/StrainProfile';
-import { Link, Route } from 'react-router-dom';
+import { Route } from 'react-router-dom';
 import ApiKey from '../../config';
+import './StrainsView.scss';
 
 class StrainsView extends Component {
   constructor(props) {
     super(props)
     this.state = {
       strains: [],
-      urlParam: this.props.match.params.id
+      urlParam: null
     };
   }
 
   componentDidMount() {
-    fetch(`http://strainapi.evanbusse.com/${ApiKey}/strains/search/effect/${this.state.urlParam}`)
+    const { id } = this.props.match.params;
+    fetch(`http://strainapi.evanbusse.com/${ApiKey}/strains/search/effect/${id}`)
       .then((response) => response.json())
-      .then((data) => this.setState({ strains: data }))
+      .then((data) => this.setState({ strains: data, urlParam: id }))
       .catch((err) => console.log(`Something went wrong ${err}`));
   }
 
@@ -43,21 +45,19 @@ class StrainsView extends Component {
         <div className="container">
           <div className="row my-5">
             <div className="col-md-12">
-              <h1>{this.props.match.params.id}</h1>
+              <h1 className="capitalize">{this.props.match.params.id}</h1>
             </div>
           </div>
           <div className="row">
-            <div className="col-md-4 strain-list-wrapper p-4">
-              <ul className="strain-list pl-0">
-                {strainsList}
-              </ul>
-            </div>
-
-            <Route 
-              path="/effects/creative/strain/:id" 
-              component={StrainProfile}
-            />
-            
+              <div className="col-md-4 strain-list-wrapper pb-4 px-0">
+                <ul className="strain-list pl-0">
+                  {strainsList}
+                </ul>
+              </div>
+              <Route 
+                path="/effects/creative/strain/:id" 
+                component={StrainProfile}
+              />
           </div>
         </div>
       </ContentBlock>

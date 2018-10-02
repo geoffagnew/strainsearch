@@ -38,6 +38,11 @@ h1, h2, h3, h4, h5, h6 {
   }
 }
 
+// helper class to capitalize elements that come in lower case from this janky API
+.capitalize {
+  text-transform: capitalize;
+}
+
 // Homepage specific scss -- move this to component level scss file at some point
 
 .home-wrap {

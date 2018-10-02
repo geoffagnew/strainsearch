@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import ContentBlock from '../ContentBlock/ContentBlock';
 import ApiKey from '../../config';
+import './StrainProfile.scss';
 
 class StrainProfile extends Component {
   constructor(props) {
@@ -74,7 +75,7 @@ class StrainProfile extends Component {
       strainProfile = 
         <div>
           <h1>{strainName}</h1>
-          <p>{strainDetails[0].race}</p>
+          <p className="capitalize">{strainDetails[0].race}</p>
           <p>{strainDetails[0].desc}</p>
           {strainFlavors.length > 0 ? <p>Flavors: {strainFlavors}</p> : ''}
           {strainEffects.positive.length > 0 ? <p>Positive: {strainEffects.positive}</p> : ''}
@@ -83,10 +84,12 @@ class StrainProfile extends Component {
     }
 
     return (
-      <div className="col-md-8 py-5 px-4">
-        {strainProfile}
-        {positiveEffects}
-        {negativeEffects}
+      <div className="col-md-8 py-5 px-5 strain-profile">
+        <div className="strain-profile-body">
+          {strainProfile}
+          {positiveEffects}
+          {negativeEffects}
+        </div>
       </div>
     );
   }
