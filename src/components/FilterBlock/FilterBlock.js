@@ -1,15 +1,15 @@
 import React, { Component } from 'react';
+import { Link } from 'react-router-dom';
 import './FilterBlock.scss';
 
-class FilterBlock extends Component {
-  render() {
-    return (
-      <div id="filterblock">
-        <h2 className="h5 font-weight-bold">{this.props.filterTitle}</h2>
-        {this.props.children}
-      </div>
-    );
-  }
-}
+const FilterBlock = (props) => (
+  <div id="filterblock">
+    <h1 className="font-weight-bold h2 mb-3">{props.filterHead}</h1>
+    <h2 className="h5 mb-3">{props.filterSubhead}</h2>
+    {props.filterOptions.map((option) => 
+        <Link key={option} to={`/effects/${option}`} className="btn btn-outline-primary btn-sm mr-2 mb-2">{option}</Link>
+    )}
+  </div>
+);
 
 export default FilterBlock;

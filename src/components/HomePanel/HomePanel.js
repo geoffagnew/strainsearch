@@ -1,9 +1,47 @@
 import React, { Component } from 'react';
-import { Link } from 'react-router-dom';
 import FilterBlock from './../FilterBlock/FilterBlock';
-import FormCheckInline from './../FormCheckInline/FormCheckInline';
+import Tab from './../Tab/Tab';
+
+const recOptions = {
+  id: 'recreactional',
+  head: 'Find the marijuana strain to suit your mood',
+  subHead: 'I want to feel:',
+  options: ['Relaxed', 'Creative', 'Focused', 'Hungry', 'Energetic', 'Giggly', 'Euphoric', 'Talkative', 'Aroused', 'Happy']
+}
+
+const medOptions = {
+  id: 'medicinal',
+  head: 'Find the right marijuana strain for what ails you',
+  subHead: 'I want to treat:',
+  options: ['Depression', 'Insomnia', 'Stress', 'Cramps', 'Nausea', 'Headaches', 'Eye Pressure', 'Inflammation', 'Spasticity', 'Seizures', 'Muscle Spasms']
+}
 
 class HomePanel extends Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      selectedView: 'recreational',
+      selectedViewDetails: recOptions 
+    }
+  }
+
+  // event listener for toggling between tabs and displaying the relevant content in FilterBlock component
+  handleTabClick = (e) => {
+    e.preventDefault();
+    const id = e.target.dataset.id;
+    if(this.state.selectedView === 'recreational') {
+      this.setState({
+        selectedView: id,
+        selectedViewDetails: medOptions
+      });
+    } else {
+      this.setState({
+        selectedView: id,
+        selectedViewDetails: recOptions
+      });
+    }
+  }
+
   render() {
     return (
       <div className="home-wrap">
@@ -14,15 +52,14 @@ class HomePanel extends Component {
             </div>
             <div className="panel-col-2 px-5">
               <ul className="tabs">
-                <li className="tabs__tab tabs__tab--active"><a href="#">Recreational effects</a></li>
-                <li className="tabs__tab"><a href="#">Medicinal effects</a></li>
+                <Tab tabText="Recreational effects" handleTabClick={this.handleTabClick} id="recreational" />
+                <Tab tabText="Medicinal effects" handleTabClick={this.handleTabClick} id="medicinal" />
               </ul>
-              <h1 className="font-weight-bold h2 mb-3">Find the right marijuana for your mood</h1>
-              <FilterBlock filterTitle="I want to feel:">
-                <Link to="/effects/relaxed" className="btn btn-outline-primary btn-sm mr-2">Relaxed</Link>
-                <Link to="/effects/creative" className="btn btn-outline-primary btn-sm mr-2">Creative</Link>
-                <Link to="/effects/focused" className="btn btn-outline-primary btn-sm mr-2">Focused</Link>
-              </FilterBlock>
+              <FilterBlock 
+                filterHead={this.state.selectedViewDetails.head} 
+                filterSubhead={this.state.selectedViewDetails.subHead}
+                filterOptions={this.state.selectedViewDetails.options}
+              />
             </div>
           </div>
       </div>
