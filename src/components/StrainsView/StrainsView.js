@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import ContentBlock from '../ContentBlock/ContentBlock';
 import StrainListItem from '../StrainListItem/StrainListItem';
-import StrainProfileTest from '../StrainProfileTest/StrainProfileTest';
+import StrainProfile from '../StrainProfile/StrainProfile';
 import { Link, Route } from 'react-router-dom';
 import ApiKey from '../../config';
 
@@ -55,7 +55,7 @@ class StrainsView extends Component {
 
             <Route 
               path="/effects/creative/strain/:id" 
-              component={StrainProfileTest}
+              component={StrainProfile}
             />
             
           </div>

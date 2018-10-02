@@ -6,21 +6,23 @@ class StrainProfile extends Component {
   constructor(props) {
     super(props)
     this.state = {
+      strainName: null, 
       strainDetails: null,
       strainEffects: null,
       strainFlavors: null,
-      urlParam: this.props.match.params.id,
       isLoaded: false
     };
   }
 
   componentDidMount() {
     let strainId;
+    const { id } = this.props.match.params;
 
-    let fetchResult = fetch(`http://strainapi.evanbusse.com/${ApiKey}/strains/search/name/${this.state.urlParam}`)
+    let fetchResult = fetch(`http://strainapi.evanbusse.com/${ApiKey}/strains/search/name/${id}`)
     .then(response => response.json())
     .then(data => {
-      this.setState({ 
+      this.setState({
+        strainName: id,
         strainDetails: data
       })
       // get the id for this strain
@@ -46,9 +48,16 @@ class StrainProfile extends Component {
     .catch(error => console.log('Request failed', error));
   }
 
+  // componentDidUpdate(prevProps, prevState) {
+  //   const { id } = this.props.match.params;
+  //   if (prevState.strainName !== id) {
+  //     this.setState(() => ({ strainName: id}));
+  //   }
+  // }
+
   render() {
 
-    const { isLoaded, strainDetails, strainEffects, strainFlavors } = this.state;
+    const { strainName, strainDetails, strainEffects, strainFlavors, isLoaded } = this.state;
 
     let strainProfile,
         positiveEffects,
@@ -60,6 +69,7 @@ class StrainProfile extends Component {
     } else {
       strainProfile = 
         <div>
+          <h1>{strainName}</h1>
           <p>{strainDetails[0].race}</p>
           <p>{strainDetails[0].desc}</p>
         </div>;
@@ -76,26 +86,12 @@ class StrainProfile extends Component {
     }
 
     return (
-      <ContentBlock>
-        <div className="container">
-          <div className="row my-5">
-            <div className="col-md-12">
-              <h1>{this.props.match.params.id}</h1>
-            </div>
-          </div>
-          <div className="row">
-            <div className="col-md-8 strain-list-wrapper py-5 px-4">
-              {strainProfile}
-              {flavors}
-              {positiveEffects}
-              {negativeEffects}
-            </div>
-            <div className="col-md-3 offset-md-1 strain-list-wrapper p-4">
-              <p>Some cool as stuff goes here.</p>
-            </div>
-          </div>
-        </div>
-      </ContentBlock>
+      <div className="col-md-8 py-5 px-4">
+        {strainProfile}
+        {flavors}
+        {positiveEffects}
+        {negativeEffects}
+      </div>
     );
   }
 }

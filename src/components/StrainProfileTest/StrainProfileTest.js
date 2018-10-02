@@ -2,6 +2,15 @@ import React, { Component } from 'react';
 import ContentBlock from '../ContentBlock/ContentBlock';
 import ApiKey from '../../config';
 
+// It works in regular stateless functions
+// const StrainProfileTest = ({ match }) => {
+//   return (
+//     <div className="col-md-8 py-5 px-4">
+//       <p>ID: {match.params.id}</p>
+//     </div>
+//   );
+// };
+
 class StrainProfileTest extends Component {
   constructor(props) {
     super(props)
@@ -13,12 +22,20 @@ class StrainProfileTest extends Component {
   
   componentDidMount() {
     let strainId;
-    const urlParam = this.props.match.params.id;
-    console.log(urlParam);
-    this.setState({
-      strainName: urlParam,
-      isLoaded: true
-    });
+    const { id } = this.props.match.params;
+    this.setState(() => (
+      { 
+        strainName: id, 
+        isLoaded: true 
+      })
+    );
+  }
+
+  componentDidUpdate(prevProps, prevState) {
+    const { id } = this.props.match.params;
+    if (prevState.strainName !== id) {
+      this.setState(() => ({ strainName: id}));
+    }
   }
 
   // componentDidUpdate(prevState) {
@@ -28,11 +45,6 @@ class StrainProfileTest extends Component {
   //       strainName: newUrlParam
   //     };
   //   }
-  // }
-
-  // componentDidUpdate(prevProps) {
-  //   const urlParam = this.props.match.params.id;
-  //   console.log(urlParam);
   // }
 
   render() {
