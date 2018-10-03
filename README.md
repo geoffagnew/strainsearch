@@ -7,6 +7,8 @@ Data is pulled from [The Strain API](http://strains.evanbusse.com/index.html).
 * Node
 * Yarn
 
+In order to run the app locally you need to setup a config.js file. The contents of that file are not available through this repo. Ask Geoff for the details.
+
 Built with create-react-app.
 
 ### Installation
