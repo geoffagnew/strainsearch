@@ -6,7 +6,7 @@ class Navigation extends Component {
   render() {
     return (
       <div id="mainnav" className="py-4 px-5">
-        <span><Link to='/'>Weed Wizard</Link></span>
+        <span><Link to='/'>Strain Search</Link></span>
         <nav>
           <ul className="mb-0">
             <li><Link to="/about-weed-wizard">About WW</Link></li>

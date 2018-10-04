@@ -1,4 +1,4 @@
-# weedwizard
+# Strain Search App
 React app that provides a vast collection of marijuana strains sortable by desired effects (medicinal or otherwise) 🌱. 
 
 Data is pulled from [The Strain API](http://strains.evanbusse.com/index.html).
