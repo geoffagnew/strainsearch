@@ -1,6 +1,13 @@
 @import '../../styles/global/variables.scss';
 
+.strain-view-wrap {
+  background: $gray-100;
+  border-radius: $global-border-radius;
+  width: 100%;
+}
+
 .strain-list-wrapper {
   background: $white;
   border-right: 1px solid $gray-300;
+  border-radius: $global-border-radius;
 }

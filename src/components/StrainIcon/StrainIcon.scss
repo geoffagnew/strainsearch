@@ -1,0 +1,21 @@
+@import '../../styles/global/variables.scss';
+
+.icon-strain {
+  width: 15px;
+  height: 15px;
+  border-radius: 25px;
+  color: $white;
+  display: inline-block;
+}
+
+.icon-strain__icon-sativa {
+  background: $colour-sativa;
+}
+
+.icon-strain__icon-indica {
+  background: $colour-indica;
+}
+
+.icon-strain__icon-hybrid {
+  background: $colour-hybrid;
+}

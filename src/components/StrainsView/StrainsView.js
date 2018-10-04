@@ -56,17 +56,18 @@ class StrainsView extends Component {
               <h1 className="capitalize">{this.props.match.params.id}</h1>
             </div>
           </div>
-          <div className="row">
-              <div className="col-md-4 strain-list-wrapper pb-4 px-0">
-                <StrainFilterButtons />
-                <ul className="strain-list pl-0">
-                  {strainsList}
-                </ul>
-              </div>
-              <Route 
-                path={`/effects/${strainEffectPath}/strain/:id`} 
-                component={StrainProfile}
-              />
+          <div className="row strain-view-wrap">
+            <div className="col-md-4 strain-list-wrapper pb-4 px-0">
+              <p className="mb-0">Filter by type</p>
+              <StrainFilterButtons />
+              <ul className="strain-list pl-0">
+                {strainsList}
+              </ul>
+            </div>
+            <Route 
+              path={`/effects/${strainEffectPath}/strain/:id`} 
+              component={StrainProfile}
+            />
           </div>
         </div>
       </ContentBlock>
