@@ -3,6 +3,7 @@ import ContentBlock from '../ContentBlock/ContentBlock';
 import StrainListItem from '../StrainListItem/StrainListItem';
 import StrainProfile from '../StrainProfile/StrainProfile';
 import StrainFilterButtons from '../StrainFilterButtons/StrainFilterButtons';
+import FilterButtonSmall from '../FilterButtonSmall/FilterButtonSmall';
 import { Route } from 'react-router-dom';
 import ApiKey from '../../config';
 import './StrainsView.scss';
@@ -16,6 +17,15 @@ class StrainsView extends Component {
     };
   }
 
+  // function to handle showing and hiding only the selected strains
+  toggleStrains = (e) => {
+    const selectedFilter = e.target.textContent.toLowerCase();
+    // console.log(selectedFilter);
+    this.setState({
+      strainToShow: 'all'
+    })
+  }
+
   componentDidMount() {
     const { id } = this.props.match.params;
     fetch(`http://strainapi.evanbusse.com/${ApiKey}/strains/search/effect/${id}`)
@@ -25,14 +35,15 @@ class StrainsView extends Component {
   }
 
   render() {
-    // define strainsList variable to hold all strains from the array.map function below, and then displayed on the page
-    let strainsList;
 
     // if effect value is available in state, load it into the strainEffectPath variable for use in Route below
     let strainEffectPath;
     if(this.state.effectId) {
       strainEffectPath = this.state.effectId;
     }
+
+    // define strainsList variable to hold all strains from the array.map function below, and then displayed on the page
+    let strainsList;
 
     if(this.state.strains.length > 0) {
       strainsList = this.state.strains.map((strain) =>
@@ -59,7 +70,9 @@ class StrainsView extends Component {
           <div className="row strain-view-wrap">
             <div className="col-md-4 strain-list-wrapper pb-4 px-0">
               <p className="mb-0">Filter by type</p>
-              <StrainFilterButtons />
+                <FilterButtonSmall btnText="Sativa" toggleStrains={this.toggleStrains} />
+                <FilterButtonSmall btnText="Indica" toggleStrains={this.toggleStrains} />
+                <FilterButtonSmall btnText="Hybrid" toggleStrains={this.toggleStrains} />
               <ul className="strain-list pl-0">
                 {strainsList}
               </ul>

@@ -2,7 +2,7 @@ import React from 'react';
 import './FilterButtonSmall.scss';
 
 const FilterButtonSmall = (props) => (
-    <li className="filter-btn"><a className="btn btn-outline-primary btn-sm mr-2 mb-2" href="#">{props.btnText}</a></li>
+    <button onClick={props.toggleStrains} className="btn btn-outline-primary btn-sm mr-2 mb-2 filter-btn">{props.btnText}</button>
 );
 
 export default FilterButtonSmall;

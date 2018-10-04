@@ -1,4 +1,6 @@
 import React, { Component } from 'react';
+import recEffects from '../../data/strain-options-rec.json';
+import medEffects from '../../data/strain-options-med.json';
 import FilterBlock from './../FilterBlock/FilterBlock';
 import Tab from './../Tab/Tab';
 import './HomePanel.scss';
@@ -7,14 +9,14 @@ const recOptions = {
   id: 'recreactional',
   head: 'Find the marijuana strain to suit your mood',
   subHead: 'I want to feel:',
-  options: ['Relaxed', 'Creative', 'Focused', 'Hungry', 'Energetic', 'Giggly', 'Euphoric', 'Talkative', 'Aroused', 'Happy']
+  options: recEffects
 }
 
 const medOptions = {
   id: 'medicinal',
   head: 'Find the right marijuana strain for what ails you',
   subHead: 'I want to treat:',
-  options: ['Depression', 'Insomnia', 'Stress', 'Cramps', 'Nausea', 'Headaches', 'Eye Pressure', 'Inflammation', 'Spasticity', 'Seizures', 'Muscle Spasms']
+  options: medEffects
 }
 
 class HomePanel extends Component {

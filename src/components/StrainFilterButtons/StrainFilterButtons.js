@@ -3,11 +3,11 @@ import './StrainFilterButtons.scss';
 import FilterButtonSmall from '../FilterButtonSmall/FilterButtonSmall';
 
 const StrainFilterButtons = (props) => (
-  <ul className="strain-list p-4">
-    <FilterButtonSmall btnText="Indica" />
+  <div className="strain-list p-4">
+    <FilterButtonSmall btnText="Indica" toggleStrains={props.onClick} />
     <FilterButtonSmall btnText="Sativa" />
     <FilterButtonSmall btnText="Hybrid" />
-  </ul>
+  </div>
 );
 
 export default StrainFilterButtons;
