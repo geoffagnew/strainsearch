@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import ContentBlock from '../ContentBlock/ContentBlock';
 import StrainListItem from '../StrainListItem/StrainListItem';
 import StrainProfile from '../StrainProfile/StrainProfile';
+import StrainFilterButtons from '../StrainFilterButtons/StrainFilterButtons';
 import { Route } from 'react-router-dom';
 import ApiKey from '../../config';
 import './StrainsView.scss';
@@ -57,6 +58,7 @@ class StrainsView extends Component {
           </div>
           <div className="row">
               <div className="col-md-4 strain-list-wrapper pb-4 px-0">
+                <StrainFilterButtons />
                 <ul className="strain-list pl-0">
                   {strainsList}
                 </ul>
