@@ -1,6 +1,5 @@
 import React, { Component } from 'react';
 import ApiKey from '../../config';
-import ContentBlock from '../ContentBlock/ContentBlock';
 import StrainIcon from '../StrainIcon/StrainIcon';
 import './StrainProfile.scss';
 
@@ -20,7 +19,7 @@ class StrainProfile extends Component {
   buildStrainProfile = (urlParams) => {
     let strainId;
     // fetch the 1st request (strain race, description and Id)
-    let fetchResult = fetch(`http://strainapi.evanbusse.com/${ApiKey}/strains/search/name/${urlParams}`)
+    fetch(`http://strainapi.evanbusse.com/${ApiKey}/strains/search/name/${urlParams}`)
     .then(response => response.json())
     .then(data => {
       this.setState({

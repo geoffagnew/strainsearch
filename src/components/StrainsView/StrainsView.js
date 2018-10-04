@@ -2,12 +2,10 @@ import React, { Component } from 'react';
 import ContentBlock from '../ContentBlock/ContentBlock';
 import StrainListItem from '../StrainListItem/StrainListItem';
 import StrainProfile from '../StrainProfile/StrainProfile';
-import StrainFilterButtons from '../StrainFilterButtons/StrainFilterButtons';
 import FilterButtonSmall from '../FilterButtonSmall/FilterButtonSmall';
 import { Route } from 'react-router-dom';
 import ApiKey from '../../config';
 import './StrainsView.scss';
-import { select } from 'glamor';
 
 class StrainsView extends Component {
   constructor(props) {
@@ -53,32 +51,25 @@ class StrainsView extends Component {
       strainEffectPath = this.state.effectId;
     }
 
+    // selectedStrains will hold the filtered strain list, which will subsequently be mapped to the strainsList variable
+    let selectedStrains;
     // define strainsList variable to hold all strains from the array.map function below, and then displayed on the page
     let strainsList;
-    let selectedStrains;
 
     if (this.state.strains.length > 0) {
 
-      if (this.state.strainVisible === 'sativa') {
-        selectedStrains = this.state.strains.filter(strain => {
-          if (strain.race === 'sativa') {
-            return true;
-          }
-        });
-      } else if (this.state.strainVisible === 'hybrid') {
-        selectedStrains = this.state.strains.filter(strain => {
-          if (strain.race === 'hybrid') {
-            return true;
-          }
-        });
-      } else if (this.state.strainVisible === 'indica') {
-        selectedStrains = this.state.strains.filter(strain => {
-          if (strain.race === 'indica') {
-            return true;
-          }
-        });
-      } else {
-        selectedStrains = this.state.strains.map((strain) => strain);
+      switch (this.state.strainVisible) {
+        case 'sativa':
+          selectedStrains = this.state.strains.filter(strain => ( strain.race === 'sativa' ? true : false ));
+          break;
+        case 'indica':
+          selectedStrains = this.state.strains.filter(strain => ( strain.race === 'indica' ? true : false ));
+          break;
+        case 'hybrid':
+          selectedStrains = this.state.strains.filter(strain => ( strain.race === 'hybrid' ? true : false ));
+          break;
+        default:
+          selectedStrains = this.state.strains.map((strain) => strain);
       }
 
       strainsList = selectedStrains.map((strain) =>
@@ -90,6 +81,7 @@ class StrainsView extends Component {
           strainEffect={strain.effect}
         />
       );
+
     } else {
       strainsList = <p>Data is loading.</p>;
     }
@@ -108,7 +100,7 @@ class StrainsView extends Component {
                 <FilterButtonSmall btnText="Sativa" toggleStrains={this.toggleStrains} />
                 <FilterButtonSmall btnText="Indica" toggleStrains={this.toggleStrains} />
                 <FilterButtonSmall btnText="Hybrid" toggleStrains={this.toggleStrains} />
-                <FilterButtonSmall btnText="Reset" toggleStrains={this.toggleStrains} />
+                {this.state.strainVisible !== 'all' ? <FilterButtonSmall btnText="Reset" toggleStrains={this.toggleStrains} /> : ''}
               <ul className="strain-list pl-0">
                 {strainsList}
               </ul>
