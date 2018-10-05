@@ -7,6 +7,7 @@ body {
   background: rgb(130,209,115);
   background: linear-gradient(180deg, rgba(130,209,115,1) 57%, rgba(102,187,85,1) 100%);  
   color: $dark-green;
+  min-height: 100vh;
 }
 
 a {
@@ -24,6 +25,11 @@ h1, h2, h3, h4, h5, h6 {
 .filter-heading {
   font-size: $font-size-base;
   font-weight: $font-weight-bold;
+}
+
+.border-tb {
+  border-top: 1px solid $gray-300;
+  border-bottom: 1px solid $gray-300;
 }
 
 //  ----------------------------- BUTTONS

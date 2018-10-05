@@ -83,10 +83,16 @@ class StrainProfile extends Component {
           
           <div className="row">
               {strainFlavors.length > 0 ? 
-                <div className="col-md-12">
-                  <h4 className="h6 font-weight-bold">Flavors: {strainFlavors}</h4> 
+                <div className="col-md-12 border-tb pt-3 pb-2 mb-3">
+                  <h4 className="h6 font-weight-bold d-inline-block">Flavors: </h4> {strainFlavors.map((strain) => <span className="mx-1 font-weight-normal">{strain}</span>)}
                 </div>
               : ''}
+          </div>
+
+          <div className="row">
+            <div className="col-md-12">
+                <h3 className="h5 font-weight-bold mb-3">Strain characteristics</h3>
+            </div>
               {strainEffects.positive.length > 0 ? 
                 <div className="col-md-4">
                   <h4 className="h6 font-weight-bold">Positive:</h4> 
