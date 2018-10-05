@@ -65,21 +65,53 @@ class StrainProfile extends Component {
 
     const { strainName, strainDetails, strainEffects, strainFlavors, isLoaded } = this.state;
 
-    let strainProfile,
-        positiveEffects,
-        negativeEffects;
+    let strainProfile;
 
     if(!isLoaded) {
       strainProfile = <p>Data is loading</p>;
     } else {
       strainProfile = 
-        <div>
-          <h1>{strainName}</h1>
-          <p className="capitalize"><StrainIcon strainName={strainDetails[0].race} iconSize="25px" /> {strainDetails[0].race}</p>
-          <p>{strainDetails[0].desc}</p>
-          {strainFlavors.length > 0 ? <p>Flavors: {strainFlavors}</p> : ''}
-          {strainEffects.positive.length > 0 ? <p>Positive: {strainEffects.positive}</p> : ''}
-          {strainEffects.negative.length > 0 ? <p>Negative: {strainEffects.negative}</p> : ''}
+        <div className="container">
+
+          <div className="row">
+            <div className="col-md-12">
+              <h2>{strainName}</h2>
+              <p className="capitalize"><StrainIcon strainName={strainDetails[0].race} iconSize="25px" /> {strainDetails[0].race}</p>
+              <p>{strainDetails[0].desc}</p>
+            </div>
+          </div>
+          
+          <div className="row">
+              {strainFlavors.length > 0 ? 
+                <div className="col-md-12">
+                  <h4 className="h6 font-weight-bold">Flavors: {strainFlavors}</h4> 
+                </div>
+              : ''}
+              {strainEffects.positive.length > 0 ? 
+                <div className="col-md-4">
+                  <h4 className="h6 font-weight-bold">Positive:</h4> 
+                  <ul className="strain-list">
+                    {strainEffects.positive.map((strain) => <li>{strain}</li>)}
+                  </ul>
+                </div>
+              : ''}
+              {strainEffects.negative.length > 0 ? 
+                <div className="col-md-4">
+                  <h4 className="h6 font-weight-bold">Negative:</h4>
+                  <ul className="strain-list">
+                    {strainEffects.negative.map((strain) => <li>{strain}</li>)}
+                  </ul>
+                </div> 
+              : ''}
+              {strainEffects.medical.length > 0 ? 
+                <div className="col-md-4">
+                <h4 className="h6 font-weight-bold">Medicinal:</h4>
+                <ul className="strain-list">
+                  {strainEffects.medical.map((strain) => <li>{strain}</li>)}
+                </ul>
+                </div>
+              : ''}
+          </div>
         </div>;
     }
 
@@ -87,8 +119,6 @@ class StrainProfile extends Component {
       <div className="col-md-8 py-5 px-5 strain-profile">
         <div className="strain-profile-body">
           {strainProfile}
-          {positiveEffects}
-          {negativeEffects}
         </div>
       </div>
     );

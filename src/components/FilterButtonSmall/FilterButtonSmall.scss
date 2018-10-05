@@ -1,3 +1,32 @@
+@import '../../styles/global/variables.scss';
+
 .filter-btn {
   display: inline-block;
+}
+
+#colour-sativa {
+  color: $white;
+  border-color: $colour-sativa;
+  background: $colour-sativa;
+}
+
+#colour-indica {
+  color: $white;
+  border-color: $colour-indica;
+  background: $colour-indica;
+}
+
+#colour-hybrid {
+  color: $white;
+  border-color: $colour-hybrid;
+  background: $colour-hybrid;
+}
+
+#colour-reset {
+  color: $gray-600;
+  border-color: $gray-600;
+  &:hover {
+    background: $gray-600;
+    color: $white;
+  }
 }

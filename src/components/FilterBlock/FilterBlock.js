@@ -1,6 +1,5 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
-import FilterButtonSmall from '../FilterButtonSmall/FilterButtonSmall';
 import './FilterBlock.scss';
 
 const FilterBlock = (props) => (

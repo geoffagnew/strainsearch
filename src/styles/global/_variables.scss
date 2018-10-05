@@ -19,7 +19,9 @@ $dark-green: #192c14;
 $medium-purple: #6352ce;
 $dark-purple: #423789;
 
-
+$colour-sativa:#FF8C00;
+$colour-indica:#9B6EFF;
+$colour-hybrid:#00B9FF;
 
 $primary: $light-green;
 // $secondary: $gray-600 !default;
@@ -67,8 +69,28 @@ $spacers: map-merge(
   $spacers
 );
 
+// Grid breakpoints
+
+$grid-breakpoints: (
+  xs: 0,
+  sm: 576px,
+  md: 768px,
+  lg: 992px,
+  xl: 1660px
+);
+
+// @include _assert-ascending($grid-breakpoints, "$grid-breakpoints");
+// @include _assert-starts-at-zero($grid-breakpoints);
+
+// Grid containers
+$container-max-widths: (
+  sm: 540px,
+  md: 720px,
+  lg: 960px,
+  xl: 1600px
+);
+
+// @include _assert-ascending($container-max-widths, "$container-max-widths");
+
 $global-border-radius: 3px;
 
-$colour-sativa: orange;
-$colour-indica: purple;
-$colour-hybrid: blue;

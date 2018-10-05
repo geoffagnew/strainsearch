@@ -21,6 +21,11 @@ h1, h2, h3, h4, h5, h6 {
   font-weight: $font-weight-bold;
 }
 
+.filter-heading {
+  font-size: $font-size-base;
+  font-weight: $font-weight-bold;
+}
+
 //  ----------------------------- BUTTONS
 .btn-primary {
   background: $medium-purple;

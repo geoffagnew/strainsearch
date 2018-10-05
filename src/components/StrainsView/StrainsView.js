@@ -96,11 +96,13 @@ class StrainsView extends Component {
           </div>
           <div className="row strain-view-wrap">
             <div className="col-md-4 strain-list-wrapper pb-4 px-0">
-              <p className="mb-0">Filter by type</p>
-                <FilterButtonSmall btnText="Sativa" toggleStrains={this.toggleStrains} />
-                <FilterButtonSmall btnText="Indica" toggleStrains={this.toggleStrains} />
-                <FilterButtonSmall btnText="Hybrid" toggleStrains={this.toggleStrains} />
-                {this.state.strainVisible !== 'all' ? <FilterButtonSmall btnText="Reset" toggleStrains={this.toggleStrains} /> : ''}
+              <div className="strains-filter py-3 px-4">
+                <p className="mb-1 filter-heading">Filter by type</p>
+                <FilterButtonSmall btnText="Sativa" customCssId="colour-sativa" toggleStrains={this.toggleStrains} />
+                <FilterButtonSmall btnText="Indica" customCssId="colour-indica" toggleStrains={this.toggleStrains} />
+                <FilterButtonSmall btnText="Hybrid" customCssId="colour-hybrid" toggleStrains={this.toggleStrains} />
+                {this.state.strainVisible !== 'all' ? <FilterButtonSmall btnText="Reset" customCssId="colour-reset" toggleStrains={this.toggleStrains} /> : ''}
+              </div>
               <ul className="strain-list pl-0">
                 {strainsList}
               </ul>
