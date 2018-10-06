@@ -16,7 +16,8 @@ class StrainsView extends Component {
       // effectId contains the effect value passed via the url params. This is used in the fetch request below
       effectId: null,
       strainVisible: 'all',
-      strainsLoaded: false
+      strainsLoaded: false,
+      strainProfileSelected: false
     };
   }
 
@@ -31,6 +32,14 @@ class StrainsView extends Component {
     })
   }
 
+  // function to handle showing and hiding placeholder text when a strainProfile hasn't yet been selected
+  strainSelected = (e) => {
+   if(!this.state.strainProfileSelected)
+    this.setState({
+      strainProfileSelected: true
+    })
+  }
+
   // function that calls the API based on the effect value and updates the local state
   buildStrainList = (urlParams) => {
     fetch(`http://strainapi.evanbusse.com/${ApiKey}/strains/search/effect/${urlParams}`)
@@ -38,7 +47,8 @@ class StrainsView extends Component {
       .then((data) => this.setState({ 
         strains: data, 
         effectId: urlParams, 
-        strainsLoaded: true 
+        strainsLoaded: true,
+        strainSelected: false
       }))
       .catch((err) => console.log(`Something went wrong ${err}`));
   }
@@ -85,6 +95,7 @@ class StrainsView extends Component {
           strainName={strain.name}
           strainRace={strain.race}
           strainEffect={strain.effect}
+          strainSelected={this.strainSelected}
         />
       );
 
@@ -113,16 +124,23 @@ class StrainsView extends Component {
                 <FilterButtonSmall btnText="Indica" customCssId="colour-indica" toggleStrains={this.toggleStrains} />
                 <FilterButtonSmall btnText="Hybrid" customCssId="colour-hybrid" toggleStrains={this.toggleStrains} />
                 {this.state.strainVisible !== 'all' ? <FilterButtonSmall btnText="Reset" customCssId="colour-reset" toggleStrains={this.toggleStrains} /> : ''}
-              </div>
-            }
+              </div>}
               <ul className="strain-list pl-0">
                 {strainsList}
               </ul>
             </div>
+
             <Route 
               path={`/effects/${strainEffectPath}/strain/:id`} 
               component={StrainProfile}
             />
+
+            {!this.state.strainProfileSelected &&
+              <div className="col-md-8 pt-5 px-5 strain-placeholder-text">
+                <h4 className="h5 text-center">Select a strain from the sidebar to get started.</h4>
+              </div>
+            }
+
           </div>
         </div>
       </ContentBlock>

@@ -68,7 +68,7 @@ class StrainProfile extends Component {
     let strainProfile;
 
     if(!isLoaded) {
-      strainProfile = <p>Data is loading</p>;
+      strainProfile = <h4 className="h5 text-center">Data is loading</h4>;
     } else {
       strainProfile = 
         <div className="container">
@@ -84,7 +84,7 @@ class StrainProfile extends Component {
           <div className="row">
               {strainFlavors.length > 0 ? 
                 <div className="col-md-12 border-tb pt-3 pb-2 mb-3">
-                  <h4 className="h6 font-weight-bold d-inline-block">Flavors: </h4> {strainFlavors.map((strain) => <span className="mx-1 font-weight-normal">{strain}</span>)}
+                  <h4 className="h6 font-weight-bold d-inline-block">Flavors: </h4> {strainFlavors.map((strain) => <span key={strain} className="mx-1 font-weight-normal">{strain}</span>)}
                 </div>
               : ''}
           </div>
@@ -97,7 +97,7 @@ class StrainProfile extends Component {
                 <div className="col-md-4">
                   <h4 className="h6 font-weight-bold">Positive:</h4> 
                   <ul className="strain-list">
-                    {strainEffects.positive.map((strain) => <li>{strain}</li>)}
+                    {strainEffects.positive.map((strain) => <li key={strain}>{strain}</li>)}
                   </ul>
                 </div>
               : ''}
@@ -105,7 +105,7 @@ class StrainProfile extends Component {
                 <div className="col-md-4">
                   <h4 className="h6 font-weight-bold">Negative:</h4>
                   <ul className="strain-list">
-                    {strainEffects.negative.map((strain) => <li>{strain}</li>)}
+                    {strainEffects.negative.map((strain) => <li key={strain}>{strain}</li>)}
                   </ul>
                 </div> 
               : ''}
@@ -113,7 +113,7 @@ class StrainProfile extends Component {
                 <div className="col-md-4">
                 <h4 className="h6 font-weight-bold">Medicinal:</h4>
                 <ul className="strain-list">
-                  {strainEffects.medical.map((strain) => <li>{strain}</li>)}
+                  {strainEffects.medical.map((strain) => <li key={strain}>{strain}</li>)}
                 </ul>
                 </div>
               : ''}

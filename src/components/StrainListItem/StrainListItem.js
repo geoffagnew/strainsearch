@@ -6,8 +6,8 @@ import './StrainListItem.scss';
 
 const StrainListItem = (props) => (
   
-  <NavLink to={`/effects/${props.effectId}/strain/${props.strainName}`} >
-    <li className="strain-list__item py-2 px-4">
+  <NavLink to={`/effects/${props.effectId}/strain/${props.strainName}`}>
+    <li onClick={props.strainSelected} className="strain-list__item py-2 px-4">
       <h3 className="h6 mb-0 font-weight-bold">{props.strainName}</h3>
       <span className="strain-race"><StrainIcon strainName={props.strainRace} iconSize="15px" /> {props.strainRace}</span>
       <span className="ml-1">
