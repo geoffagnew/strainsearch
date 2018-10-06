@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import SearchShelf from '../SearchShelf/SearchShelf';
 import ContentBlock from '../ContentBlock/ContentBlock';
 import StrainListItem from '../StrainListItem/StrainListItem';
 import StrainProfile from '../StrainProfile/StrainProfile';
@@ -15,9 +16,14 @@ class StrainsView extends Component {
       strains: [],
       // effectId contains the effect value passed via the url params. This is used in the fetch request below
       effectId: null,
-      strainVisible: 'all',
+      // controls what strain visibility when user clicks a strain filter button. This value will default to 'all' when the componentDidMount method is run
+      strainVisible: null,
+      // lets the strains-filter component know when the strain list has been loaded. This prevents premature display of the filters on the page
       strainsLoaded: false,
-      strainProfileSelected: false
+      // controls when to show default placeholder text in place of the strainProfile component
+      strainProfileSelected: false,
+      // controls whether the drop down search bar is visible
+      searchVisible: false
     };
   }
 
@@ -33,11 +39,20 @@ class StrainsView extends Component {
   }
 
   // function to handle showing and hiding placeholder text when a strainProfile hasn't yet been selected
-  strainSelected = (e) => {
+  strainSelected = () => {
    if(!this.state.strainProfileSelected)
     this.setState({
       strainProfileSelected: true
     })
+  }
+
+  toggleSearch = (e) => {
+    e.preventDefault();
+    if(!this.state.searchVisible) {
+      this.setState({ searchVisible: true })
+    } else {
+      this.setState({ searchVisible: false })
+    }
   }
 
   // function that calls the API based on the effect value and updates the local state
@@ -48,7 +63,9 @@ class StrainsView extends Component {
         strains: data, 
         effectId: urlParams, 
         strainsLoaded: true,
-        strainSelected: false
+        strainSelected: false,
+        strainVisible: 'all',
+        strainProfileSelected: false
       }))
       .catch((err) => console.log(`Something went wrong ${err}`));
   }
@@ -56,6 +73,13 @@ class StrainsView extends Component {
   componentDidMount() {
     const { id } = this.props.match.params;
     this.buildStrainList(id);
+  }
+
+  componentDidUpdate(prevProps, prevState) {
+    const { id } = this.props.match.params;
+    if (id !== prevState.effectId) {
+      this.buildStrainList(id);
+    }
   }
 
   render() {
@@ -108,11 +132,16 @@ class StrainsView extends Component {
 
 
     return (
+      <div>
+      { this.state.searchVisible && <SearchShelf /> }
       <ContentBlock>
         <div className="container">
           <div className="row my-5">
-            <div className="col-md-12">
+            <div className="col-md-6">
               <h1 className="capitalize">{this.props.match.params.id}</h1>
+            </div>
+            <div className="col-md-6">
+              <a href="/new-search" onClick={this.toggleSearch}>Start new search</a>
             </div>
           </div>
           <div className="row strain-view-wrap">
@@ -144,6 +173,7 @@ class StrainsView extends Component {
           </div>
         </div>
       </ContentBlock>
+      </div>
     );
   }
 }

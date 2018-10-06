@@ -1,0 +1,10 @@
+@import '../../styles/global/variables.scss';
+
+.search-shelf-wrapper {
+  background: $white;
+  min-height: 200px;
+  position: relative;
+  top: 0;
+  left: 0;
+  z-index: 20;
+}
