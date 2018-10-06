@@ -15,7 +15,8 @@ class StrainsView extends Component {
       strains: [],
       // effectId contains the effect value passed via the url params. This is used in the fetch request below
       effectId: null,
-      strainVisible: 'all'
+      strainVisible: 'all',
+      strainsLoaded: false
     };
   }
 
@@ -34,7 +35,11 @@ class StrainsView extends Component {
   buildStrainList = (urlParams) => {
     fetch(`http://strainapi.evanbusse.com/${ApiKey}/strains/search/effect/${urlParams}`)
       .then((response) => response.json())
-      .then((data) => this.setState({ strains: data, effectId: urlParams }))
+      .then((data) => this.setState({ 
+        strains: data, 
+        effectId: urlParams, 
+        strainsLoaded: true 
+      }))
       .catch((err) => console.log(`Something went wrong ${err}`));
   }
 
@@ -56,6 +61,7 @@ class StrainsView extends Component {
     // define strainsList variable to hold all strains from the array.map function below, and then displayed on the page
     let strainsList;
 
+    // logic to build the strains list that appears in the sidebar
     if (this.state.strains.length > 0) {
 
       switch (this.state.strainVisible) {
@@ -83,8 +89,12 @@ class StrainsView extends Component {
       );
 
     } else {
-      strainsList = <p>Data is loading.</p>;
+      strainsList = 
+        <li className="pt-5 px-4">
+          <h3 className="h6 mb-0">Strain data is loading</h3>
+        </li>;
     }
+
 
     return (
       <ContentBlock>
@@ -96,6 +106,7 @@ class StrainsView extends Component {
           </div>
           <div className="row strain-view-wrap">
             <div className="col-md-4 strain-list-wrapper pb-4 px-0">
+            {this.state.strainsLoaded && 
               <div className="strains-filter py-3 px-4">
                 <p className="mb-1 filter-heading">Filter by type</p>
                 <FilterButtonSmall btnText="Sativa" customCssId="colour-sativa" toggleStrains={this.toggleStrains} />
@@ -103,6 +114,7 @@ class StrainsView extends Component {
                 <FilterButtonSmall btnText="Hybrid" customCssId="colour-hybrid" toggleStrains={this.toggleStrains} />
                 {this.state.strainVisible !== 'all' ? <FilterButtonSmall btnText="Reset" customCssId="colour-reset" toggleStrains={this.toggleStrains} /> : ''}
               </div>
+            }
               <ul className="strain-list pl-0">
                 {strainsList}
               </ul>
