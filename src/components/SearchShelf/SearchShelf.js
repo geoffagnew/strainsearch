@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import { CSSTransitionGroup } from 'react-transition-group';
 import FilterBlock from './../FilterBlock/FilterBlock';
 import Tab from './../Tab/Tab';
 import recEffects from '../../data/strain-options-rec.json';
@@ -45,23 +46,30 @@ class SearchShelf extends Component {
 
   render() {
     return (
-      <div className="search-shelf-wrapper">
-        <div className="container">
-          <div className="row py-4">
-            <div className="col-md-12">
-              <ul className="tabs mb-3">
-                <Tab tabText="Recreational effects" currentView={this.state.selectedView} handleTabClick={this.handleTabClick} id="recreational" />
-                <Tab tabText="Medicinal effects" currentView={this.state.selectedView} handleTabClick={this.handleTabClick} id="medicinal" />
-              </ul>
-              <FilterBlock 
-                filterHead={null}
-                filterSubhead={this.state.selectedViewDetails.head}
-                filterOptions={this.state.selectedViewDetails.options}
-              />
+        <CSSTransitionGroup
+          transitionName="example"
+          transitionAppear={true}
+          transitionAppearTimeout={400}
+          transitionEnter={false}
+          transitionLeave={false}>
+          <div className="search-shelf-wrapper" key="shelf-wrapper" >
+            <div className="container">
+              <div className="row py-4">
+                <div className="col-md-12">
+                  <ul className="tabs mb-3">
+                    <Tab tabText="Recreational effects" currentView={this.state.selectedView} handleTabClick={this.handleTabClick} id="recreational" />
+                    <Tab tabText="Medicinal effects" currentView={this.state.selectedView} handleTabClick={this.handleTabClick} id="medicinal" />
+                  </ul>
+                  <FilterBlock 
+                    filterHead={null}
+                    filterSubhead={this.state.selectedViewDetails.head}
+                    filterOptions={this.state.selectedViewDetails.options}
+                  />
+                </div>
+              </div>
             </div>
           </div>
-        </div>
-      </div>
+        </CSSTransitionGroup>
     );
   }
 }
