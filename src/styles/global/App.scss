@@ -10,6 +10,13 @@ body {
   min-height: 100vh;
 }
 
+// .main-body-wrap {
+//   display: flex;
+//   flex-direction: row;
+//   flex-wrap: wrap;
+//   justify-content: center;
+// }
+
 a {
   color: $link-color;
   &:hover {

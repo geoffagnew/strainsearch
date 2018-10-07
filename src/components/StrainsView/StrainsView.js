@@ -46,6 +46,7 @@ class StrainsView extends Component {
     })
   }
 
+  // function to handle toggling the search shelf on the strainsView page
   toggleSearch = (e) => {
     e.preventDefault();
     if(!this.state.searchVisible) {
@@ -57,6 +58,10 @@ class StrainsView extends Component {
 
   // function that calls the API based on the effect value and updates the local state
   buildStrainList = (urlParams) => {
+    if (this.state.searchVisible) {
+      this.setState({ searchVisible: false});
+    }
+
     fetch(`http://strainapi.evanbusse.com/${ApiKey}/strains/search/effect/${urlParams}`)
       .then((response) => response.json())
       .then((data) => this.setState({ 
