@@ -1,11 +1,12 @@
 import React, { Component } from 'react';
-import { CSSTransitionGroup } from 'react-transition-group';
+// import { CSSTransitionGroup } from 'react-transition-group';
 import FilterBlock from './../FilterBlock/FilterBlock';
 import Tab from './../Tab/Tab';
-// import { SlideDown } from 'react-slidedown';
+import { SlideDown } from 'react-slidedown';
 import recEffects from '../../data/strain-options-rec.json';
 import medEffects from '../../data/strain-options-med.json';
 import './SearchShelf.scss';
+import 'react-slidedown/lib/slidedown.css';
 
 const recOptions = {
   id: 'recreactional',
@@ -47,12 +48,7 @@ class SearchShelf extends Component {
 
   render() {
     return (
-        <CSSTransitionGroup
-          transitionName="example"
-          transitionAppear={true}
-          transitionAppearTimeout={100}
-          transitionEnter={false}
-          transitionLeave={false}>
+      <SlideDown className={'search-dropdown-slidedown'}>
           <div className="search-shelf-wrapper" key="shelf-wrapper" >
             <div className="container">
               <div className="row py-4">
@@ -63,14 +59,14 @@ class SearchShelf extends Component {
                   </ul>
                   <FilterBlock 
                     filterHead={null}
-                    filterSubhead={this.state.selectedViewDetails.head}
+                    filterSubhead={null}
                     filterOptions={this.state.selectedViewDetails.options}
                   />
                 </div>
               </div>
             </div>
           </div>
-        </CSSTransitionGroup>
+        </SlideDown>
     );
   }
 }
