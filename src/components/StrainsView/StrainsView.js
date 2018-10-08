@@ -32,6 +32,7 @@ class StrainsView extends Component {
     let selectedFilter = e.target.textContent.toLowerCase();
     if (selectedFilter === 'reset') {
       selectedFilter = 'all';
+      // console.log(selectedFilter);
     }
     this.setState({
       strainVisible: selectedFilter
@@ -80,12 +81,12 @@ class StrainsView extends Component {
     this.buildStrainList(id);
   }
 
-  componentDidUpdate(prevProps, prevState) {
-    const { id } = this.props.match.params;
-    if (id !== prevState.effectId) {
-      this.buildStrainList(id);
-    }
-  }
+  // componentDidUpdate(prevProps, prevState) {
+  //   const { id } = this.props.match.params;
+  //   if (id !== prevState.effectId) {
+  //     this.buildStrainList(id);
+  //   }
+  // }
 
   render() {
 
@@ -95,29 +96,21 @@ class StrainsView extends Component {
       strainEffectPath = this.state.effectId;
     }
 
-    // selectedStrains will hold the filtered strain list, which will subsequently be mapped to the strainsList variable
-    let selectedStrains;
     // define strainsList variable to hold all strains from the array.map function below, and then displayed on the page
+    const { strains } = this.state;
+    let filterSelection;
     let strainsList;
 
     // logic to build the strains list that appears in the sidebar
     if (this.state.strains.length > 0) {
 
-      switch (this.state.strainVisible) {
-        case 'sativa':
-          selectedStrains = this.state.strains.filter(strain => ( strain.race === 'sativa' ? true : false ));
-          break;
-        case 'indica':
-          selectedStrains = this.state.strains.filter(strain => ( strain.race === 'indica' ? true : false ));
-          break;
-        case 'hybrid':
-          selectedStrains = this.state.strains.filter(strain => ( strain.race === 'hybrid' ? true : false ));
-          break;
-        default:
-          selectedStrains = this.state.strains.map((strain) => strain);
+      if (this.state.strainVisible === 'sativa' || this.state.strainVisible === 'indica' || this.state.strainVisible === 'hybrid') {
+        filterSelection = 'hide';
+      } else {
+        filterSelection = null;
       }
 
-      strainsList = selectedStrains.map((strain) =>
+      strainsList = strains.map((strain) =>
         <StrainListItem 
           key={strain.id}
           effectId={this.state.effectId}
@@ -125,6 +118,7 @@ class StrainsView extends Component {
           strainRace={strain.race}
           strainEffect={strain.effect}
           strainSelected={this.strainSelected}
+          shouldHide={this.state.strainVisible !== strain.race && filterSelection} 
         />
       );
 
