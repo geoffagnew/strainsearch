@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import { CSSTransitionGroup } from 'react-transition-group';
 import FilterBlock from './../FilterBlock/FilterBlock';
 import Tab from './../Tab/Tab';
+// import { SlideDown } from 'react-slidedown';
 import recEffects from '../../data/strain-options-rec.json';
 import medEffects from '../../data/strain-options-med.json';
 import './SearchShelf.scss';
@@ -49,7 +50,7 @@ class SearchShelf extends Component {
         <CSSTransitionGroup
           transitionName="example"
           transitionAppear={true}
-          transitionAppearTimeout={400}
+          transitionAppearTimeout={100}
           transitionEnter={false}
           transitionLeave={false}>
           <div className="search-shelf-wrapper" key="shelf-wrapper" >
