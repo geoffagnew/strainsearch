@@ -138,7 +138,7 @@ class StrainsView extends Component {
 
     return (
       <div>
-      { this.state.searchVisible && <SearchShelf /> }
+      <SearchShelf searchVisible={this.state.searchVisible} />
       <ContentBlock>
         <div className="container">
           <div className="row my-5">

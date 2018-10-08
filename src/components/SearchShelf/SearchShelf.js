@@ -48,7 +48,7 @@ class SearchShelf extends Component {
 
   render() {
     return (
-      <SlideDown className={'search-dropdown-slidedown'}>
+      <SlideDown closed={!this.props.searchVisible} className={'search-dropdown-slidedown'}>
           <div className="search-shelf-wrapper" key="shelf-wrapper" >
             <div className="container">
               <div className="row py-4">
