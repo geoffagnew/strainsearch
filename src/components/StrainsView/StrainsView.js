@@ -59,9 +59,9 @@ class StrainsView extends Component {
 
   // function that calls the API based on the effect value and updates the local state
   buildStrainList = (urlParams) => {
-    if (this.state.searchVisible) {
-      this.setState({ searchVisible: false});
-    }
+    // if (this.state.searchVisible) {
+    //   this.setState({ searchVisible: false});
+    // }
 
     fetch(`http://strainapi.evanbusse.com/${ApiKey}/strains/search/effect/${urlParams}`)
       .then((response) => response.json())
@@ -79,13 +79,18 @@ class StrainsView extends Component {
   componentDidMount() {
     const { id } = this.props.match.params;
     this.buildStrainList(id);
+    console.log(`------------------`);
+    console.log('buildStrainList fired from componentDidMount');
   }
 
+  // fired everytime a component's props or state is updated
   componentDidUpdate(prevProps, prevState) {
     const { id } = this.props.match.params;
-    if (id !== prevState.effectId) {
-      // this.buildStrainList(id);
-      console.log('buildStrainList fired twice :(');
+    console.log(`******`);
+    console.log('componentDidUpdate fired outside of the conditional statement');
+    if (id !== prevState.effectId && prevState.effectId !== null) {
+      this.buildStrainList(id);
+      console.log('buildStrainList fired from componentDidUpdate');
     }
   }
 
