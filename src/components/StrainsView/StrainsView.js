@@ -81,12 +81,13 @@ class StrainsView extends Component {
     this.buildStrainList(id);
   }
 
-  // componentDidUpdate(prevProps, prevState) {
-  //   const { id } = this.props.match.params;
-  //   if (id !== prevState.effectId) {
-  //     this.buildStrainList(id);
-  //   }
-  // }
+  componentDidUpdate(prevProps, prevState) {
+    const { id } = this.props.match.params;
+    if (id !== prevState.effectId) {
+      // this.buildStrainList(id);
+      console.log('buildStrainList fired twice :(');
+    }
+  }
 
   render() {
 
