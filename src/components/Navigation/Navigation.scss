@@ -27,4 +27,7 @@ nav ul li {
 nav a {
   color: #192c14;
   font-weight: bold;
+  &:hover {
+    color: $white;
+  }
 }
