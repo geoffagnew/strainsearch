@@ -77,9 +77,6 @@ class StrainsView extends Component {
   componentDidMount() {
     const { id } = this.props.match.params;
     this.buildStrainList(id);
-    // console.log(`------------------`);
-    // console.log('buildStrainList fired from componentDidMount');
-    // console.log(`------------------`);
   }
 
   // fired everytime a component's props or state is updated
@@ -87,9 +84,6 @@ class StrainsView extends Component {
     const { id } = this.props.match.params;
     if (id !== prevProps.match.params.id && prevProps.match.params.id !== null) {
       this.buildStrainList(id);
-      // console.log(`------------------`);
-      // console.log('buildStrainList fired from componentDidUpdate');
-      // console.log(`------------------`);
     }
   }
 
@@ -111,8 +105,6 @@ class StrainsView extends Component {
 
       if (this.state.strainVisible === 'sativa' || this.state.strainVisible === 'indica' || this.state.strainVisible === 'hybrid') {
         filterSelection = 'hide';
-      } else {
-        filterSelection = null;
       }
 
       strainsList = strains.map((strain) =>
@@ -123,7 +115,7 @@ class StrainsView extends Component {
           strainRace={strain.race}
           strainEffect={strain.effect}
           strainSelected={this.strainSelected}
-          shouldHide={this.state.strainVisible !== strain.race && filterSelection} 
+          shouldHide={this.state.strainVisible !== strain.race ? filterSelection : 'show'} 
         />
       );
 
@@ -145,7 +137,7 @@ class StrainsView extends Component {
               <h1 className="capitalize">{this.props.match.params.id}</h1>
             </div>
             <div className="col-md-6">
-              <a href="/new-search" onClick={this.toggleSearch}>Start new search</a>
+              <a href="/new-search" className="btn btn-primary float-right" onClick={this.toggleSearch}>{this.state.searchVisible === false ? 'Start new search' : 'Close search'}</a>
             </div>
           </div>
           <div className="row strain-view-wrap">
