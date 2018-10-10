@@ -15,7 +15,7 @@ class GeneralPage extends Component {
   // function that calls the API based on the effect value and updates the local state
   buildPage = (urlParams) => {
 
-    fetch(`http://localhost:3000/data/${urlParams}.json`)
+    fetch(`${window.location.origin}/data/${urlParams}.json`)
       .then((response) => response.json())
       .then((data) => this.setState({
         pageTitle: data.pageTitle, 
