@@ -32,7 +32,6 @@ class StrainsView extends Component {
     let selectedFilter = e.target.textContent.toLowerCase();
     if (selectedFilter === 'reset') {
       selectedFilter = 'all';
-      // console.log(selectedFilter);
     }
     this.setState({
       strainVisible: selectedFilter
@@ -59,9 +58,9 @@ class StrainsView extends Component {
 
   // function that calls the API based on the effect value and updates the local state
   buildStrainList = (urlParams) => {
-    // if (this.state.searchVisible) {
-    //   this.setState({ searchVisible: false});
-    // }
+    if (this.state.searchVisible) {
+      this.setState({ searchVisible: false});
+    }
 
     fetch(`http://strainapi.evanbusse.com/${ApiKey}/strains/search/effect/${urlParams}`)
       .then((response) => response.json())
@@ -69,7 +68,6 @@ class StrainsView extends Component {
         strains: data, 
         effectId: urlParams, 
         strainsLoaded: true,
-        strainSelected: false,
         strainVisible: 'all',
         strainProfileSelected: false
       }))
@@ -79,18 +77,19 @@ class StrainsView extends Component {
   componentDidMount() {
     const { id } = this.props.match.params;
     this.buildStrainList(id);
-    console.log(`------------------`);
-    console.log('buildStrainList fired from componentDidMount');
+    // console.log(`------------------`);
+    // console.log('buildStrainList fired from componentDidMount');
+    // console.log(`------------------`);
   }
 
   // fired everytime a component's props or state is updated
   componentDidUpdate(prevProps, prevState) {
     const { id } = this.props.match.params;
-    console.log(`******`);
-    console.log('componentDidUpdate fired outside of the conditional statement');
-    if (id !== prevState.effectId && prevState.effectId !== null) {
+    if (id !== prevProps.match.params.id && prevProps.match.params.id !== null) {
       this.buildStrainList(id);
-      console.log('buildStrainList fired from componentDidUpdate');
+      // console.log(`------------------`);
+      // console.log('buildStrainList fired from componentDidUpdate');
+      // console.log(`------------------`);
     }
   }
 

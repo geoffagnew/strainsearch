@@ -54,12 +54,12 @@ class StrainProfile extends Component {
     this.buildStrainProfile(id);
   }
 
-  // componentDidUpdate(prevProps, prevState) {
-  //   const { id } = this.props.match.params;
-  //   if (prevState.strainName !== id) {
-  //     this.buildStrainProfile(id);
-  //   }
-  // }
+  componentDidUpdate(prevProps, prevState) {
+    const { id } = this.props.match.params;
+    if (prevProps.match.params.id !== id) {
+      this.buildStrainProfile(id);
+    }
+  }
 
   render() {
 
