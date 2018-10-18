@@ -19,7 +19,7 @@ class StrainProfile extends Component {
   buildStrainProfile = (urlParams) => {
     let strainId;
     // fetch the 1st request (strain race, description and Id)
-    fetch(`http://strainapi.evanbusse.com/${ApiKey}/strains/search/name/${urlParams}`)
+    fetch(`https://strainapi.herokuapp.com/${ApiKey}/strains/search/name/${urlParams}`)
     .then(response => response.json())
     .then(data => {
       this.setState({
@@ -29,7 +29,7 @@ class StrainProfile extends Component {
       // get the id for this strain
       strainId = data[0].id;
       // make a 2nd request and return a promise
-      return fetch(`http://strainapi.evanbusse.com/${ApiKey}/strains/data/effects/${strainId}`);
+      return fetch(`https://strainapi.herokuapp.com/${ApiKey}/strains/data/effects/${strainId}`);
     })
     .then(response => response.json())
     .then(data => {
@@ -37,7 +37,7 @@ class StrainProfile extends Component {
         strainEffects: data
       })
       // make a 3rd request and return a promise
-      return fetch(`http://strainapi.evanbusse.com/${ApiKey}/strains/data/flavors/${strainId}`);
+      return fetch(`https://strainapi.herokuapp.com/${ApiKey}/strains/data/flavors/${strainId}`);
     })
     .then(response => response.json())
     .then(data => {
