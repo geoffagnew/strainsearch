@@ -62,7 +62,7 @@ class StrainsView extends Component {
       this.setState({ searchVisible: false});
     }
 
-    fetch(`http://strainapi.evanbusse.com/${ApiKey}/strains/search/effect/${urlParams}`)
+    fetch(`https://strainapi.herokuapp.com/${ApiKey}/strains/search/effect/${urlParams}`)
       .then((response) => response.json())
       .then((data) => this.setState({ 
         strains: data, 
